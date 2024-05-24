@@ -6,7 +6,7 @@ in any sort of argument that actually matters. Still sometimes it's handy to
 look at a ton of different hyperparameter settings.
 
 You give it a csv of data and it will run a bunch of UMAPs and show them in a
-barebones browser page that looks something this:
+barebones browser page that looks something this (with many more rows):
 
 ![Screenshot of a bunch of UMAPs in an HTML grid](media/screenshot.png)
 
