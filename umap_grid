@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+set -e
+
+DATA=""
+
+usage() {
+  echo "Usage: $0 --data <data> [additional arguments]"
+  exit 1
+}
+
+if [ $# -eq 0 ]; then
+  echo "Error: No arguments provided."
+  usage
+fi
+
+
+filtered_args=()
+
+for arg in "$@"; do
+  if [[ "$arg" == --data=* ]]; then
+    DATA="${arg#*=}"
+  else
+    filtered_args+=("$arg")
+  fi
+done
+
+
+if [ -z "$DATA" ]; then
+  echo "Error: --data argument required"
+  usage
+fi
+
+
+ABSOLUTE_DATA=$(realpath "$DATA")
+
+nextflow run nextflow/umap_grid.nf \
+    -profile conda \
+    --data ${ABSOLUTE_DATA}  \
+    "${filtered_args[@]}"
