@@ -29,8 +29,8 @@ Once that is done, call:
 ./umap_grid --data=[your_csv].csv
 ```
 
-This will populate a directory called `results` and display the plots therein
-at `http://locahost:5000`. Press control-c to exit.
+After a few minutes this will populate a directory called `results` and display the
+plots therein at `http://locahost:5000`. Press control-c to exit.
 
 Other params you can pass to `umap_grid`:
 - `--num_seeds`: the number of different rand seeds to try.
