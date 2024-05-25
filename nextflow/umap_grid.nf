@@ -61,7 +61,9 @@ process PLOT_UMAP {
     tuple(path("plot_seed${seed}_nneigh_${n_neighbors}_mindist_${min_dist}_pca_${pca_dims}_${metric}.png"),
           val(seed),
           val(n_neighbors),
-          val(min_dist))
+          val(min_dist),
+          val(pca_dims),
+          val(metric))
 
     publishDir "results/plots", mode: "copy"
 

@@ -17,20 +17,19 @@
 </head>
 <body>
     <div class="container-fluid">
-        {% for (n_neighbors, min_distance), group in grouped %}
-            <h2 class="mb-3">N Neighbors: {{ n_neighbors }}, Min Distance: {{ min_distance }}</h2>
+        {% for (n_neighbors, min_distance, pca_dims, metric), group in grouped %}
             <div class="row">
                 {% for _, row in group.iterrows() %}
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div>
                             <img src="{{ url_for('static', filename=row.png) }}"
                                  class="scaled-img" >
                             <p>seed: {{ row.seed }}
-                            <p>min_distance: {{ row.min_distance }}
-                            <p>n_neighbors: {{ row.n_neighbors }}
-                            <p>metric: {{ row.metric }}
+                            <p>min_distance: {{ min_distance }}
+                            <p>n_neighbors: {{ n_neighbors }}
+                            <p>metric: {{ metric }}
                             <p>Running PCA pre-umap:
-                            {{ 'No' if row.pca_dims == 0 else row.pca_dims ~ ' dims' }}
+                            {{ 'No' if pca_dims == '0' else pca_dims ~ ' dims' }}
                         </div>
                     </div>
                 {% endfor %}

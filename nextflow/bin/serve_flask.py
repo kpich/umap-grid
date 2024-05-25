@@ -26,7 +26,7 @@ def _get_df(png_data):
         if not line:
             continue
         fields = _split_line(line)
-        if len(fields) != 5:
+        if len(fields) != 6:
             raise ValueError(f"Unexpected format line {i}: '{line}'")
         pngs.append(Path(fields[0]).name)
         seeds.append(fields[1])
@@ -51,9 +51,9 @@ def home():
     df = _get_df(args.png_data)
 
     df = df.sort_values(
-        by=["n_neighbors", "min_distance", "pca_dims", "distance_metric", "seed"]
+        by=["n_neighbors", "min_distance", "pca_dims", "metric", "seed"]
     )
-    grouped = df.groupby(["n_neighbors", "min_distance", "pca_dims", "distance_metric"])
+    grouped = df.groupby(["n_neighbors", "min_distance", "pca_dims", "metric"])
 
     return render_template("index.html", grouped=grouped)
 
