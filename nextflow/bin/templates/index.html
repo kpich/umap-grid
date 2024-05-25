@@ -25,9 +25,12 @@
                         <div>
                             <img src="{{ url_for('static', filename=row.png) }}"
                                  class="scaled-img" >
-                            <p class="card-text">Seed: {{ row.seed }}</p>
-                            <p class="card-text">Min Distance: {{ row.min_distance }}</p>
-                            <p class="card-text">N Neighbors: {{ row.n_neighbors }}</p>
+                            <p>Seed: {{ row.seed }}
+                            <p>Min Distance: {{ row.min_distance }}
+                            <p>N Neighbors: {{ row.n_neighbors }}
+                            <p>Distance metric: {{ row.distance }}
+                            <p>Running PCA pre-umap:
+                            {{ 'No' if row.pca_dims == 0 else row.pca_dims ~ ' dims' }}
                         </div>
                     </div>
                 {% endfor %}

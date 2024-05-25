@@ -12,15 +12,21 @@ def _get_input_embeds(df):
     return df[embed_cols].values
 
 
-def gen_umap(data, seed, n_neighbors, min_dist, csv_outfile):
+def gen_umap(data, seed, n_neighbors, min_dist, pca_dims, metric, csv_outfile):
     data_df = pd.read_csv(data)
 
     # float<num_examples, embed_dim>.
     input_embeds = _get_input_embeds(data_df)
 
+    if pca_dims:
+        pca = PCA(n_components=pca_dims, random_state=seed)
+        # float<num_examples, pca_dims>
+        input_embeds = pca.fit_transform(input_embeds)
+
     reducer = umap.UMAP(
         min_dist=min_dist,
         n_neighbors=n_neighbors,
+        metric=metric,
         random_state=seed,
     )
 
@@ -42,6 +48,8 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--n_neighbors", type=int, required=True)
     parser.add_argument("--min_dist", type=float, required=True)
+    parser.add_argument("--pca_dims", type=int, required=True)
+    parser.add_argument("--metric", type=int, required=True)
     parser.add_argument("--csv_outfile", type=str, required=True)
     args = parser.parse_args()
     gen_umap(
@@ -49,5 +57,7 @@ if __name__ == "__main__":
         seed=args.seed,
         n_neighbors=args.n_neighbors,
         min_dist=args.min_dist,
+        pca_dims=args.pca_dims,
+        metric=args.metric,
         csv_outfile=args.csv_outfile,
     )
