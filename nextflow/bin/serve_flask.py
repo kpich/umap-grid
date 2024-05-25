@@ -21,7 +21,7 @@ def _split_line(line):
 
 
 def _get_df(png_data):
-    pngs, seeds, n_neighbs, min_dists, pca_dims, dists = [], [], [], [], [], []
+    pngs, seeds, n_neighbs, min_dists, pca_dims, metrics = [], [], [], [], [], []
     for i, line in enumerate(Path(png_data).read_text().split("\n")):
         if not line:
             continue
@@ -33,7 +33,7 @@ def _get_df(png_data):
         n_neighbs.append(fields[2])
         min_dists.append(fields[3])
         pca_dims.append(fields[4])
-        dists.append(fields[5])
+        metrics.append(fields[5])
     return pd.DataFrame(
         {
             "png": pngs,
@@ -41,7 +41,7 @@ def _get_df(png_data):
             "min_distance": min_dists,
             "n_neighbors": n_neighbs,
             "pca_dims": pca_dims,
-            "distance_metric": dists,
+            "metric": metrics,
         }
     )
 

@@ -49,7 +49,7 @@ if __name__ == "__main__":
     parser.add_argument("--n_neighbors", type=int, required=True)
     parser.add_argument("--min_dist", type=float, required=True)
     parser.add_argument("--pca_dims", type=int, required=True)
-    parser.add_argument("--metric", type=int, required=True)
+    parser.add_argument("--metric", type=str, required=True)
     parser.add_argument("--csv_outfile", type=str, required=True)
     args = parser.parse_args()
     gen_umap(
