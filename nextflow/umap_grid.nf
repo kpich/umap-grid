@@ -98,6 +98,7 @@ workflow {
 
     GET_NUM_NEIGHBORS_VALS()
     nneighbors = GET_NUM_NEIGHBORS_VALS.out.splitText().map { it.trim() }
+    GET_NUM_NEIGHBORS_VALS.out.view()
 
     GET_PCA_DIMS()
     pca_dims = GET_PCA_DIMS.out.splitText().map { it.trim() }

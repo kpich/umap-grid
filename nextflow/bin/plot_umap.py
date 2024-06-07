@@ -15,7 +15,7 @@ def plot_umap(umap_csv, png_outfile):
         df["umap_0"],
         df["umap_1"],
         s=100,
-        color="blue",
+        color=df["color"],
         linewidth=0.7,
         alpha=0.5,
     )

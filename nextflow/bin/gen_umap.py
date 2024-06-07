@@ -33,10 +33,16 @@ def gen_umap(data, seed, n_neighbors, min_dist, pca_dims, metric, csv_outfile):
     # float<num_examples, 2>.
     umap_embeddings = reducer.fit_transform(input_embeds)
 
+    if "color" in data_df.columns:
+        color = data_df["color"]
+    else:
+        color = "blue"
+
     df = pd.DataFrame(
         {
             "umap_0": umap_embeddings[:, 0],
             "umap_1": umap_embeddings[:, 1],
+            "color": color,
         }
     )
     df.to_csv(csv_outfile, index=False)
